@@ -1,0 +1,39 @@
+@startuml
+class ResourceAllocator{
+    - int {static} INVALID_RESOURCE_ID
+    + int allocate(IResrouce resource)
+    + void free(IResrouce resource,int ressourceId)
+}
+
+interface IResource{
+    void markSlotFree(int resourceId)
+    void markSlotBusy(int resourceId)
+    int findFreeSlot()
+}
+
+interface ITimeResource extends IResource{
+    void markSlotFree(int resourceId)
+    void markSlotBusy(int resourceId)
+    int findFreeSlot()
+}
+
+interface ISpaceResource extends IResource{
+    void markSlotFree(int resourceId)
+    void markSlotBusy(int resourceId)
+    int findFreeSlot()
+}
+
+class TimeResource implements ITimeResource{
+    + void markSlotFree(int resourceId)
+    + void markSlotBusy(int resourceId)
+    + int findFreeSlot()
+}
+
+class SpaceRessource implements ISpaceResource{
+    + void markSlotFree(int resourceId)
+    + void markSlotBusy(int resourceId)
+    + int findFreeSlot()
+}
+
+ResourceAllocator .> IResource
+@enduml
